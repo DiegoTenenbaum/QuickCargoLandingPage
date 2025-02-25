@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Cargo - Optimiza tu Gestión Aduanera</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #07212E, #4DC0AE);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-section {
+            color: white;
+            padding: 3rem 2rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-section {
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: white;
+            text-transform: capitalize;
+            letter-spacing: 3px;
+            display: inline-block;
+            border: 4px solid white;
+            padding: 0.3rem 1rem;
+            border-radius: 5px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: capitalize;
+            text-shadow: 6px 6px 30px rgba(0, 0, 0, 0.7);
+            margin: 3rem 0 0 0;
+            max-width: 80%;
+            position: relative;
+            display: inline-block;
+            line-height: 1.2;
+        }
+
+        .hero-title span {
+            display: inline-block;
+            background-color: #4DC0AE;
+            padding: 0.2rem 1rem;
+            border-top-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-top: 20px;
+            letter-spacing: 1px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            color: #4DC0AE;
+            font-weight: 700;
+        }
+
+        .highlight-2 {
+            color: #07212E;
+            font-weight: 700;
+        }
+
+        @keyframes textMoveUp {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-10px);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Estilos de la grilla dentro del fondo */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 20px;
+            width: 100%;
+            padding: 30px;
+            border-radius: 30px;
+            margin-top: -40px;
+            box-sizing: border-box;
+        }
+
+        .grid-item {
+            padding: 100px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #07212E;
+            background-color: transparent;
+            filter: brightness(1.1) contrast(1) saturate(0.4);
+        }
+
+        .grid-item.bg-color {
+            background-color: #4DC0AE;
+            color: white;
+            background-size: cover;
+            background-position: center;
+            border-radius: 50px;
+            filter: grayscale(0.4) brightness(0.9) contrast(1.1) saturate(0.8) sepia(0.1);
+        }
+
+        .grid-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+            border-radius: 50px;
+        }
+
+        /* Modificar para dispositivos más pequeños */
+        @media (max-width: 1024px) {
+            .grid-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .grid-item {
+                padding: 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(6, 1fr);
+                padding: 20px;
+            }
+
+            .grid-item {
+                padding: 50px;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .grid-item {
+                padding: 30px;
+                font-size: 1rem;
+            }
+
+            .logo {
+                font-size: 1.6rem;
+            }
+        }
+
+        .grid-container .grid-item:nth-child(1) {
+            border-top-left-radius: 0;
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 50px 70px;
+            border-bottom-left-radius: 50px 70px;
+        }
+
+        .grid-container .grid-item:nth-child(3) {
+            border-top-right-radius: 0;
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 50px 70px;
+            border-bottom-right-radius: 50px 70px;
+        }
+
+        .grid-container .grid-item:nth-child(5) {
+            border-bottom-right-radius: 0;
+            border-top-left-radius: 50px 70px;
+            border-top-right-radius: 50px 70px;
+            border-bottom-left-radius: 50px 70px;
+        }
+
+        .grid-container .grid-item:nth-child(7) {
+            border-top-right-radius: 0;
+            border-top-left-radius: 50px 70px;
+            border-bottom-right-radius: 50px 70px;
+            border-bottom-left-radius: 50px 70px;
+        }
+
+        .grid-container .grid-item:nth-child(9) {
+            border-top-left-radius: 0;
+            border-bottom-right-radius: 50px 70px;
+            border-bottom-left-radius: 50px 70px;
+            border-top-right-radius: 50px 70px;
+        }
+
+        .grid-container .grid-item:nth-child(11) {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 50px 70px;
+            border-top-left-radius: 50px 70px;
+            border-top-right-radius: 50px 70px;
+        }
+
+        .grid-container .grid-item:nth-child(2) {
+            background-color: #07212E;
+            filter: none;
+            border-top-left-radius: 50px 70px;
+            border-top-right-radius: 50px 70px;
+        }
+
+        .grid-container .grid-item:nth-child(4) {
+            background-color: #4DC0AE;
+            filter: none;
+            border-bottom-left-radius: 50px 70px;
+            border-bottom-right-radius: 50px 70px;
+        }
+
+        .grid-container .grid-item:nth-child(6) {
+            background-color: #07212E;
+            filter: none;
+            border-bottom-left-radius: 50px 70px;
+            border-bottom-right-radius: 50px 70px;
+            border-top-left-radius: 50px 70px;
+            border-top-right-radius: 50px 70px;
+        }
+
+        .grid-container .grid-item:nth-child(8) {
+            background-color: #4DC0AE;
+            filter: none;
+            border-bottom-left-radius: 50px 70px;
+            border-bottom-right-radius: 50px 70px;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 50px 70px;
+            border-top-left-radius: 50px 70px;
+            border-top-right-radius: 50px 70px;
+        }
+        .glass:hover {
+            transform: scale(1.05);
+        }
+        h2:hover, h3:hover {
+            color: #4DC0AE;
+            transition: color 0.3s ease-in-out;
+        }
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s;
+        }
+        .modal-content {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 90%;
+            width: 600px;
+            text-align: center;
+            position: relative;
+        }
+        .modal.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        input, textarea, select {
+            background-color: transparent;
+            border: 2px solid #ffffff;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 16px;
+            width: 100%;
+            color: #ffffff;
+            font-size: 14px;
+            outline: none;
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: #4DC0AE;
+            box-shadow: 0 0 5px rgba(77, 192, 174, 0.8);
+        }
+        .form-label {
+            text-align: left;
+            color: #ffffff;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <section class="logo-section">
+        <div class="logo">QuickCargo</div>
+    </section>
+    <section class="hero-section">
+        <h1 class="hero-title">
+            Automatización <span>Inteligente</span> <br> para Despachantes
+        </h1>
+        <p class="hero-subtitle">
+            Optimiza tus procesos con <span class="highlight">tecnología avanzada</span> y mejora la <span class="highlight">eficiencia</span> en la <span class="highlight">gestión aduanera</span>.
+        </p>
+    </section>
+
+    <!-- Grilla dentro del fondo de la página -->
+    <section>
+        <div class="grid-container">
+            <div class="grid-item bg-color large" style="background-image: url('https://img.freepik.com/foto-gratis/jovenes-que-trabajan-juntos-empresa-nueva-creacion_23-2149116499.jpg?semt=ais_hybrid');"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item bg-color large" style="background-image: url('https://plus.unsplash.com/premium_photo-1664474834472-6c7d1e3198e2?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Z2VudGUlMjB0cmFiYWphbmRvfGVufDB8fDB8fHww');"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item bg-color large" style="background-image: url('https://img.freepik.com/foto-gratis/grupo-personas-trabajando-plan-negocios-oficina_1303-15779.jpg');"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item bg-color" style="background-image: url('https://st.depositphotos.com/1011643/2704/i/450/depositphotos_27047343-stock-photo-inspectors-doing-inspection-at-the.jpg');"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item bg-color" style="background-image: url('https://inta.es/export/sites/default/.galleries/descubre_y_aprende_Imagenes/avion/avion1.jpg');"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item bg-color" style="background-image: url('https://c.files.bbci.co.uk/76D6/production/_125822403_gettyimages-1319966119.jpg');"></div>
+            <div class="grid-item"></div>
+        </div>
+    </section>
+
+    <section class="container mx-auto my-12 sm:my-16 lg:my-20 p-8 sm:p-12 lg:p-16 text-center">
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 sm:mb-12 " style="font-family: 'Ubuntu', sans-serif;">
+            ¿Qué ofrecemos?
+        </h2>
+        
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
+            <div class="glass" onclick="openModal('Generación de DUAs', 'Nuestra herramienta de automatización facilita la creación de Declaraciones Únicas de Aduanas (DUA) de manera rápida y precisa, eliminando el riesgo de errores humanos que pueden generar costosos retrasos o sanciones. Además, se adapta a los requisitos normativos vigentes, lo que garantiza que cada documento cumpla con los estándares más estrictos.')">
+                <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold" style="font-family: 'Ubuntu', sans-serif;">Generación de DUAs</h3>
+                <p class="mt-4 text-lg sm:text-xl" style="font-family: 'Ubuntu', sans-serif;">Automatiza y reduce errores en la documentación.</p>
+            </div>
+            <div class="glass" onclick="openModal('Clasificación Arancelaria', 'Gracias a nuestra inteligencia artificial, podemos clasificar productos de acuerdo a los aranceles y regulaciones aduaneras específicas para cada país. Esto no solo reduce la carga administrativa, sino que también asegura que tus productos estén correctamente clasificados, lo que reduce el riesgo de retenciones o tarifas adicionales.')">
+                <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold" style="font-family: 'Ubuntu', sans-serif;">Clasificación Arancelaria</h3>
+                <p class="mt-4 text-lg sm:text-xl" style="font-family: 'Ubuntu', sans-serif;">Optimiza la gestión con inteligencia artificial.</p>
+            </div>
+            <div class="glass" onclick="openModal('Escaneo y Subida de Archivos', 'Nuestro sistema de escaneo y carga de archivos está diseñado para agilizar el proceso de carga de documentos, eliminando la necesidad de procesamiento manual. Además, integra herramientas de OCR (reconocimiento óptico de caracteres) que aseguran que la información contenida en los documentos escaneados sea correctamente extraída y procesada en tiempo real.')">
+                <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold" style="font-family: 'Ubuntu', sans-serif;">Escaneo y Subida de Archivos</h3>
+                <p class="mt-4 text-lg sm:text-xl" style="font-family: 'Ubuntu', sans-serif;">Procesa documentos de forma rápida y segura.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="container mx-auto my-12 sm:my-16 lg:my-20 p-8 sm:p-12 lg:p-16 text-center">
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 sm:mb-12" style="font-family: 'Ubuntu', sans-serif;">Beneficios Clave</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
+            <div class="glass" onclick="openModal('Reducción de Errores', 'La automatización de nuestros procesos permite minimizar la posibilidad de errores humanos que pueden generar costosos retrasos o incluso sanciones. Cada paso está diseñado para verificar y validar la precisión de los datos, asegurando que cada documento sea correcto desde el inicio.')">
+                <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold" style="font-family: 'Ubuntu', sans-serif;">Reducción de Errores</h3>
+                <p class="mt-4 text-lg sm:text-xl" style="font-family: 'Ubuntu', sans-serif;">Minimiza riesgos con automatización avanzada.</p>
+            </div>
+            <div class="glass" onclick="openModal('Ahorro de Tiempo', 'Al automatizar tareas complejas, ahorramos a tu equipo tiempo valioso que de otro modo se destinaría a tareas manuales y repetitivas. Esto no solo aumenta la eficiencia, sino que permite que tu personal se enfoque en actividades de mayor valor.')">
+                <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold" style="font-family: 'Ubuntu', sans-serif;">Ahorro de Tiempo</h3>
+                <p class="mt-4 text-lg sm:text-xl" style="font-family: 'Ubuntu', sans-serif;">Optimiza procesos y acelera la gestión.</p>
+            </div>
+            <div class="glass" onclick="openModal('Cumplimiento Normativo', 'Nos aseguramos de que todos nuestros procesos y documentos estén alineados con las regulaciones y normativas locales e internacionales, minimizando el riesgo de problemas legales y maximizando la seguridad y transparencia en tus operaciones.')">
+                <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold" style="font-family: 'Ubuntu', sans-serif;">Cumplimiento Normativo</h3>
+                <p class="mt-4 text-lg sm:text-xl" style="font-family: 'Ubuntu', sans-serif;">Garantiza exactitud en la documentación.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="container mx-auto my-12 sm:my-16 lg:my-20 p-8 sm:p-12 lg:p-16 text-center">
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 sm:mb-12" style="font-family: 'Ubuntu', sans-serif;">Descubre el Futuro de la Gestión Aduanera</h2>
+        <p class="text-xl sm:text-2xl mb-8 max-w-3xl mx-auto font-light" style="font-family: 'Ubuntu', sans-serif;">Solicita una demostración gratuita y optimiza tu flujo de trabajo con nuestra tecnología avanzada.</p>
+        <button class="mt-6 px-8 py-4 sm:px-10 sm:py-5 lg:px-12 lg:py-6 bg-white text-[#07212E] text-xl sm:text-2xl font-bold rounded-full hover:bg-gray-200 transition-all shadow-lg hover:shadow-2xl" onclick="openDemoModal()">Solicitar Demo</button>
+    </section>
+    
+    <footer class="text-center py-8 sm:py-10 lg:py-12">
+        <p>&copy; 2025 Quick Cargo. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Modal de información -->
+    <div id="modal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closeModal(event)">&times;</span>
+            <h3 id="modal-title" class="text-3xl font-bold"></h3>
+            <p id="modal-text" class="mt-4"></p>
+        </div>
+    </div>
+
+    <!-- Modal de solicitud de demo -->
+    <div id="demo-modal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closeModal(event)">&times;</span>
+            <h3 class="text-3xl font-bold" style="font-family: 'Ubuntu', sans-serif; color: white">Solicita tu Demostración</h3>
+            <form action="#" method="POST" class="mt-4">
+                <label for="name" class="form-label" style="font-family: 'Ubuntu', sans-serif;">Nombre</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="last-name" class="form-label" style="font-family: 'Ubuntu', sans-serif;">Apellido</label>
+                <input type="text" id="last-name" name="last-name" required>
+
+                <label for="email" class="form-label" style="font-family: 'Ubuntu', sans-serif;">Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="company" class="form-label" style="font-family: 'Ubuntu', sans-serif;">Nombre de la Empresa</label>
+                <input type="text" id="company" name="company">
+
+                <button type="submit" class="mt-4 px-6 py-2 bg-[#07212E] text-white font-bold rounded-full" style="font-family: 'Ubuntu', sans-serif;">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openModal(title, text) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-text').textContent = text;
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function openDemoModal() {
+            document.getElementById('demo-modal').classList.add('active');
+        }
+
+        function closeModal(event) {
+            document.getElementById('demo-modal').classList.remove('active');
+            document.getElementById('modal').classList.remove('active');
+        }
+    </script>
+
+</body>
+</html>
